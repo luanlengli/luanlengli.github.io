@@ -82,14 +82,14 @@
 <meta name="description" content="介绍本次部署方式为二进制可执行文件的方式部署  注意请根据自己的实际情况调整  如无特殊说明，均在k8s-m1节点上执行 参考博文 感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建  【张馆长】二进制部署Kubernetes v1.11.x(1.12.x) HA可选    软件版本   kubernetes v1.11">
 <meta name="keywords" content="kubernetes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群">
+<meta property="og:title" content="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
 <meta property="og:url" content="https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html">
 <meta property="og:site_name" content="luanlengli&#39;s Blog">
 <meta property="og:description" content="介绍本次部署方式为二进制可执行文件的方式部署  注意请根据自己的实际情况调整  如无特殊说明，均在k8s-m1节点上执行 参考博文 感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建  【张馆长】二进制部署Kubernetes v1.11.x(1.12.x) HA可选    软件版本   kubernetes v1.11">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-10T16:25:23.000Z">
+<meta property="og:updated_time" content="2018-12-11T16:20:55.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群">
+<meta name="twitter:title" content="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
 <meta name="twitter:description" content="介绍本次部署方式为二进制可执行文件的方式部署  注意请根据自己的实际情况调整  如无特殊说明，均在k8s-m1节点上执行 参考博文 感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建  【张馆长】二进制部署Kubernetes v1.11.x(1.12.x) HA可选    软件版本   kubernetes v1.11">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群 | luanlengli's Blog</title>
+  <title>【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群 | luanlengli's Blog</title>
   
 
 
@@ -302,7 +302,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群</h2>
+          <h2 class="post-title" itemprop="name headline">【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群</h2>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-11T00:25:23+08:00">
-                2018-12-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-12T00:20:55+08:00">
+                2018-12-12
               </time>
             
           </span>
@@ -344,7 +344,7 @@
 
           
           
-             <span id="/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html" class="leancloud_visitors" data-flag-title="【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群">
+             <span id="/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html" class="leancloud_visitors" data-flag-title="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  12.5k
+                  13k
                 </span>
               
 
@@ -556,9 +556,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
 <h1 id="定义集群变量"><a href="#定义集群变量" class="headerlink" title="定义集群变量"></a><strong><font color="red">定义集群变量</font></strong></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">declare -A MasterArray WorkerArray</span><br><span class="line"><span class="meta">#</span> 声明master节点信息</span><br><span class="line">MasterArray=(['k8s-m1']=172.16.80.201 ['k8s-m2']=172.16.80.202 ['k8s-m3']=172.16.80.203)</span><br><span class="line"><span class="meta">#</span> 声明worker节点信息，这里与master节点信息一致</span><br><span class="line">WorkerArray=(['k8s-m1']=172.16.80.201 ['k8s-m2']=172.16.80.202 ['k8s-m3']=172.16.80.203)</span><br><span class="line">export VIP="172.16.80.200"</span><br><span class="line">export KUBE_APISERVER="https://172.16.80.200:6443"</span><br><span class="line"><span class="meta">#</span> 声明VIP所在的网卡名称，以ens33为例</span><br><span class="line">export VIP_IFACE="ens33"</span><br></pre></td></tr></table></figure>
 <h1 id="下载所需的二进制文件"><a href="#下载所需的二进制文件" class="headerlink" title="下载所需的二进制文件"></a>下载所需的二进制文件</h1><blockquote>
-<p>二进制文件需要分发到master和node节点</p>
+<p>二进制文件需要分发到master和worker节点</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载kubernetes二进制包</span><br><span class="line">echo '--- 下载kubernetes v1.11.5二进制包 ---'</span><br><span class="line">wget https://dl.k8s.io/v1.11.5/kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">tar xzf kubernetes-server-linux-amd64.tar.gz \</span><br><span class="line">        kubernetes/server/bin/hyperkube \</span><br><span class="line">        kubernetes/server/bin/kube-controller-manager \</span><br><span class="line">        kubernetes/server/bin/kubectl \</span><br><span class="line">        kubernetes/server/bin/apiextensions-apiserver \</span><br><span class="line">        kubernetes/server/bin/kube-proxy \</span><br><span class="line">        kubernetes/server/bin/kube-apiserver \</span><br><span class="line">        kubernetes/server/bin/kubelet \</span><br><span class="line">        kubernetes/server/bin/kubeadm \</span><br><span class="line">        kubernetes/server/bin/kube-aggregator \</span><br><span class="line">        kubernetes/server/bin/kube-scheduler \</span><br><span class="line">        kubernetes/server/bin/cloud-controller-manager \</span><br><span class="line">        kubernetes/server/bin/mounter</span><br><span class="line">chown -R kube:kube kubernetes/server/bin/*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载etcd二进制包</span><br><span class="line">echo '--- 下载etcd v3.3.10二进制包 ---'</span><br><span class="line">wget https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">tar xzf etcd-v3.3.10-linux-amd64.tar.gz \</span><br><span class="line">        etcd-v3.3.10-linux-amd64/etcdctl \</span><br><span class="line">        etcd-v3.3.10-linux-amd64/etcd</span><br><span class="line">chown etcd:etcd etcd-v3.3.10-linux-amd64/etcdctl etcd-v3.3.10-linux-amd64/etcd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载CNI-plugin</span><br><span class="line">echo '--- 下载cni-plugins v0.7.4 ---'</span><br><span class="line">wget https://github.com/containernetworking/plugins/releases/download/v0.7.4/cni-plugins-amd64-v0.7.4.tgz</span><br><span class="line">mkdir cni-plugins</span><br><span class="line">tar xzf cni-plugins-amd64-v0.7.4.tgz -C ./cni-plugins/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 分发二进制文件到master节点</span><br><span class="line">echo '--- 分发kubernetes和etcd二进制文件 ---'</span><br><span class="line">for NODE in "$&#123;!MasterArray[@]&#125;";do</span><br><span class="line">    echo "--- $NODE ---"</span><br><span class="line">    rsync -avpt kubernetes/server/bin/* etcd-v3.3.10-linux-amd64/etcdctl etcd-v3.3.10-linux-amd64/etcd $NODE:/usr/local/bin/</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 分发二进制文件到worker节点</span><br><span class="line">echo '--- 分发kubernetes和CNI二进制文件 ---'</span><br><span class="line">for NODE in "$&#123;!WorkerArray[@]&#125;";do</span><br><span class="line">    echo "--- $NODE ---"</span><br><span class="line">    rsync -avpt ./cni-plugins/* $NODE:/opt/cni/bin/</span><br><span class="line">    rsync -avpt kubernetes/server/bin/kubelet kubernetes/server/bin/kube-proxy $NODE:/usr/local/bin/</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载kubernetes二进制包</span><br><span class="line">echo '--- 下载kubernetes v1.11.5二进制包 ---'</span><br><span class="line">wget https://dl.k8s.io/v1.11.5/kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">tar xzf kubernetes-server-linux-amd64.tar.gz \</span><br><span class="line">        kubernetes/server/bin/hyperkube \</span><br><span class="line">        kubernetes/server/bin/kube-controller-manager \</span><br><span class="line">        kubernetes/server/bin/kubectl \</span><br><span class="line">        kubernetes/server/bin/apiextensions-apiserver \</span><br><span class="line">        kubernetes/server/bin/kube-proxy \</span><br><span class="line">        kubernetes/server/bin/kube-apiserver \</span><br><span class="line">        kubernetes/server/bin/kubelet \</span><br><span class="line">        kubernetes/server/bin/kubeadm \</span><br><span class="line">        kubernetes/server/bin/kube-aggregator \</span><br><span class="line">        kubernetes/server/bin/kube-scheduler \</span><br><span class="line">        kubernetes/server/bin/cloud-controller-manager \</span><br><span class="line">        kubernetes/server/bin/mounter</span><br><span class="line">chown -R kube:kube kubernetes/server/bin/*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载etcd二进制包</span><br><span class="line">echo '--- 下载etcd v3.3.10二进制包 ---'</span><br><span class="line">wget https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">tar xzf etcd-v3.3.10-linux-amd64.tar.gz \</span><br><span class="line">        etcd-v3.3.10-linux-amd64/etcdctl \</span><br><span class="line">        etcd-v3.3.10-linux-amd64/etcd</span><br><span class="line">chown etcd:etcd etcd-v3.3.10-linux-amd64/etcdctl etcd-v3.3.10-linux-amd64/etcd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载CNI-plugin</span><br><span class="line">echo '--- 下载cni-plugins v0.7.4 ---'</span><br><span class="line">wget https://github.com/containernetworking/plugins/releases/download/v0.7.4/cni-plugins-amd64-v0.7.4.tgz</span><br><span class="line">mkdir cni-plugins</span><br><span class="line">tar xzf cni-plugins-amd64-v0.7.4.tgz -C ./cni-plugins/</span><br></pre></td></tr></table></figure>
+<h2 id="分发二进制文件到master节点"><a href="#分发二进制文件到master节点" class="headerlink" title="分发二进制文件到master节点"></a>分发二进制文件到master节点</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo '--- 分发kubernetes和etcd二进制文件 ---'</span><br><span class="line">for NODE in "$&#123;!MasterArray[@]&#125;";do</span><br><span class="line">    echo "--- $NODE ---"</span><br><span class="line">    rsync -avpt kubernetes/server/bin/* etcd-v3.3.10-linux-amd64/etcdctl etcd-v3.3.10-linux-amd64/etcd $NODE:/usr/local/bin/</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="分发二进制文件到worker节点"><a href="#分发二进制文件到worker节点" class="headerlink" title="分发二进制文件到worker节点"></a>分发二进制文件到worker节点</h2><blockquote>
+<ul>
+<li>这里针对已有的worker节点分发二进制文件</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo '--- 分发kubernetes和CNI二进制文件 ---'</span><br><span class="line">for NODE in "$&#123;!WorkerArray[@]&#125;";do</span><br><span class="line">    echo "--- $NODE ---"</span><br><span class="line">    rsync -avpt ./cni-plugins/* $NODE:/opt/cni/bin/</span><br><span class="line">    rsync -avpt kubernetes/server/bin/kubelet kubernetes/server/bin/kube-proxy $NODE:/usr/local/bin/</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <h1 id="生成集群Key和Certificates"><a href="#生成集群Key和Certificates" class="headerlink" title="生成集群Key和Certificates"></a>生成集群Key和Certificates</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本次部署，需要为etcd、kube-apiserver、kube-controller-manager、kube-scheduler、kube-proxy生成证书。另外还需要生成sa.key、sa.pub、front-proxy-ca、front-proxy-client证书用于集群的其他功能。</p>
 <blockquote>
 <ul>
@@ -574,8 +581,8 @@
 <li>建立证书过程在<font color="red" size="3">k8s-m1</font>上完成</li>
 </ul>
 </blockquote>
-<h2 id="下载CFSSL工具"><a href="#下载CFSSL工具" class="headerlink" title="下载CFSSL工具"></a>下载CFSSL工具</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -O /usr/local/bin/cfssl-certinfo</span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -O /usr/local/bin/cfssl</span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -O /usr/local/bin/cfssljson</span><br><span class="line">chmod 755 /usr/local/bin/cfssl-certinfo \</span><br><span class="line">          /usr/local/bin/cfssl \</span><br><span class="line">          /usr/local/bin/cfssljson</span><br></pre></td></tr></table></figure>
-<h2 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/pki /root/master /root/worker</span><br><span class="line">cd /root/pki</span><br></pre></td></tr></table></figure>
+<h2 id="下载CFSSL工具"><a href="#下载CFSSL工具" class="headerlink" title="下载CFSSL工具"></a>下载CFSSL工具</h2><p>​<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -O /usr/local/bin/cfssl-certinfo</span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -O /usr/local/bin/cfssl</span><br><span class="line">wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -O /usr/local/bin/cfssljson</span><br><span class="line">chmod 755 /usr/local/bin/cfssl-certinfo \</span><br><span class="line">​          /usr/local/bin/cfssl \</span><br><span class="line">​          /usr/local/bin/cfssljson</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h2><p>​<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/pki /root/master /root/worker</span><br><span class="line">cd /root/pki</span><br></pre></td></tr></table></figure></p>
 <h2 id="创建用于生成证书的json文件"><a href="#创建用于生成证书的json文件" class="headerlink" title="创建用于生成证书的json文件"></a>创建用于生成证书的json文件</h2><ul>
 <li>ca-config.json</li>
 </ul>
@@ -694,6 +701,16 @@
 <h2 id="检查生成的文件"><a href="#检查生成的文件" class="headerlink" title="检查生成的文件"></a>检查生成的文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">ls -l | grep 'etcd etcd'</span><br><span class="line">-r--r--r--. 1 etcd etcd 1679 Dec  6 15:36 etcd-ca-key.pem</span><br><span class="line">-r--r--r--. 1 etcd etcd 1375 Dec  6 15:36 etcd-ca.pem</span><br><span class="line">-r--r--r--. 1 etcd etcd 1671 Dec  6 15:36 etcd-key.pem</span><br><span class="line">-r--r--r--. 1 etcd etcd 1460 Dec  6 15:36 etcd.pem</span><br><span class="line">ls -l | grep 'kube kube'</span><br><span class="line">-r--------. 1 kube kube  113 Dec  6 15:39 audit-policy.yml</span><br><span class="line">-r--------. 1 kube kube 2207 Dec  6 15:39 bootstrap.kubeconfig</span><br><span class="line">-r--------. 1 kube kube  240 Dec  6 15:39 encryption.yml</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 front-proxy-ca-key.pem</span><br><span class="line">-r--------. 1 kube kube 1143 Dec  6 15:38 front-proxy-ca.pem</span><br><span class="line">-r--------. 1 kube kube 1679 Dec  6 15:38 front-proxy-client-key.pem</span><br><span class="line">-r--------. 1 kube kube 1188 Dec  6 15:38 front-proxy-client.pem</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 kube-admin-key.pem</span><br><span class="line">-r--------. 1 kube kube 6341 Dec  6 15:39 kube-admin.kubeconfig</span><br><span class="line">-r--------. 1 kube kube 1419 Dec  6 15:38 kube-admin.pem</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 kube-apiserver-key.pem</span><br><span class="line">-r--------. 1 kube kube 1688 Dec  6 15:38 kube-apiserver.pem</span><br><span class="line">-r--------. 1 kube kube 1679 Dec  6 15:38 kube-ca-key.pem</span><br><span class="line">-r--------. 1 kube kube 1387 Dec  6 15:38 kube-ca.pem</span><br><span class="line">-r--------. 1 kube kube 1679 Dec  6 15:38 kube-controller-manager-key.pem</span><br><span class="line">-r--------. 1 kube kube 6449 Dec  6 15:39 kube-controller-manager.kubeconfig</span><br><span class="line">-r--------. 1 kube kube 1476 Dec  6 15:38 kube-controller-manager.pem</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 kube-proxy-key.pem</span><br><span class="line">-r--------. 1 kube kube 6371 Dec  6 15:39 kube-proxy.kubeconfig</span><br><span class="line">-r--------. 1 kube kube 1440 Dec  6 15:38 kube-proxy.pem</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 kube-scheduler-key.pem</span><br><span class="line">-r--------. 1 kube kube 6395 Dec  6 15:39 kube-scheduler.kubeconfig</span><br><span class="line">-r--------. 1 kube kube 1452 Dec  6 15:38 kube-scheduler.pem</span><br><span class="line">-r--------. 1 kube kube 1675 Dec  6 15:38 sa-key.pem</span><br><span class="line">-r--------. 1 kube kube 1432 Dec  6 15:38 sa.pem</span><br><span class="line">-r--------. 1 kube kube   80 Dec  6 15:39 token.csv</span><br></pre></td></tr></table></figure>
 <h2 id="分发证书文件和kubeconfig到master节点"><a href="#分发证书文件和kubeconfig到master节点" class="headerlink" title="分发证书文件和kubeconfig到master节点"></a>分发证书文件和kubeconfig到master节点</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for NODE in "$&#123;!MasterArray[@]&#125;";do</span><br><span class="line">    echo "---- $NODE ----"</span><br><span class="line">    echo '---- 分发etcd证书 ----'</span><br><span class="line">    rsync -avpt etcd-ca-key.pem etcd-ca.pem etcd-key.pem etcd.pem $NODE:/etc/etcd/ssl/</span><br><span class="line">    echo '---- 分发kubeconfig文件 yml文件 token.csv ----'</span><br><span class="line">    rsync -avpt *kubeconfig *yml token.csv $NODE:/etc/kubernetes/</span><br><span class="line">    echo '---- 分发sa证书 kube证书 front-proxy证书 ----'</span><br><span class="line">    rsync -avpt sa.pem sa-key.pem  front*pem kube-*pem kube-ca*pem  $NODE:/etc/kubernetes/pki/</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <h1 id="kubernetes-master节点"><a href="#kubernetes-master节点" class="headerlink" title="kubernetes-master节点"></a>kubernetes-master节点</h1><p>本节介绍如何部署kubernetes master节点</p>
+<p><strong>说明</strong></p>
+<blockquote>
+<ul>
+<li>原则上，master节点不应该运行业务Pod，且不应该暴露到公网环境！！</li>
+<li>边界节点，应该交由<code>worker</code>节点或者运行<code>Ingress</code>的节点来承担</li>
+<li>以<code>kubeadm</code>部署为例，部署完成后，会给master节点添加<code>node-role.kubernetes.io/master=&#39;&#39;</code>标签（Labels）并且会对带有此标签的节点添加<code>node-role.kubernetes.io/master:NoSchedule</code>污点（taints），这样不能容忍此污点的Pod无法调度到master节点</li>
+<li>本文中，在kubelet启动参数里，默认添加<code>node-role.kubernetes.io/node=&#39;&#39;</code>标签（Labels），且没有对master节点添加<code>node-role.kubernetes.io/master:NoSchedule</code>污点（taints）</li>
+<li>生产环境中最好参照kubeadm，对master节点添加<code>node-role.kubernetes.io/master=&#39;&#39;</code>标签（Labels）和<code>node-role.kubernetes.io/master:NoSchedule</code>污点（taints）</li>
+</ul>
+</blockquote>
 <p><strong>kube-apiserver</strong></p>
 <blockquote>
 <ul>
@@ -709,7 +726,7 @@
 <ul>
 <li>通过核心控制循环(Core Control Loop)监听 Kubernetes API<br>的资源来维护集群的状态,这些资源会被不同的控制器所管理,如 Replication Controller、Namespace<br>Controller 等等。而这些控制器会处理着自动扩展、滚动更新等等功能。</li>
 <li>关闭非安全端口，在安全端口 10252 接收 https 请求</li>
-<li>使用 kubeconfig 访问 apiserver 的安全端口</li>
+<li>使用 kubeconfig 访问 kube-apiserver 的安全端口</li>
 </ul>
 </blockquote>
 <p><strong>kube-scheduler</strong></p>
@@ -723,14 +740,13 @@
 <blockquote>
 <ul>
 <li>提供多个 API Server 的负载均衡(Load Balance)</li>
-<li>确保haproxy的6443端口负载到所有的apiserver的6443端口</li>
+<li>监听VIP的6443端口负载均衡到三台master节点的6443端口</li>
 </ul>
 </blockquote>
 <p><strong>Keepalived</strong></p>
 <blockquote>
 <ul>
-<li>提供虚拟IP位址(VIP),来让vip落在可用的master主机上供所有组件都能访问到可用的master</li>
-<li>结合haproxy能访问到master上的apiserver的6443端口</li>
+<li>提供虚拟IP位址(VIP),来让vip落在可用的master主机上供所有组件访问master节点</li>
 <li>提供健康检查脚本用于切换VIP</li>
 </ul>
 </blockquote>
@@ -872,7 +888,6 @@
 <h3 id="设置kubectl"><a href="#设置kubectl" class="headerlink" title="设置kubectl"></a>设置kubectl</h3><blockquote>
 <ul>
 <li>kubectl命令默认会加载<code>~/.kube/config</code>文件，如果文件不存在则连接<code>http://127.0.0.1:8080</code>，这显然不符合预期，这里使用之前生成的kube-admin.kubeconfig</li>
-<li>设置命令补全</li>
 <li>在<font color="red">k8s-m1</font>上操作</li>
 </ul>
 </blockquote>
@@ -927,16 +942,31 @@
 <li>安装Docker-ce，配置与master节点一致即可</li>
 <li>安装cni-plugins、kubelet、kube-proxy</li>
 <li>关闭防火墙和SELINUX</li>
-<li>不需要创建etcd和kube用户</li>
-<li>仅运行Docker、kube-proxy和kubelet服务</li>
-<li>kubelet和kube-proxy需要以下配置文件<ul>
-<li>/etc/kubernetes/kube-proxy.conf</li>
-<li>/etc/kubernetes/kube-proxy.kubeconfig</li>
-<li>/etc/kubernetes/bootstarp.kubeconfig</li>
-<li>/etc/kubernetes/kubelet.conf</li>
+<li>kubelet和kube-proxy运行需要root权限</li>
+<li>这里是以k8s-m1、k8s-m2、k8s-m3作为Work节点加入集群</li>
+</ul>
+</blockquote>
+<p><strong>kubelet</strong></p>
+<blockquote>
+<ul>
+<li>管理容器生命周期、节点状态监控</li>
+<li>目前 kubelet 支持三种数据源来获取节点Pod信息：<ul>
+<li>本地文件</li>
+<li>通过 url 从网络上某个地址来获取信息</li>
+<li>API Server：从 kubernetes master 节点获取信息</li>
 </ul>
 </li>
-<li>这里是以k8s-m1、k8s-m2、k8s-m3作为Work节点加入集群</li>
+<li>kubelet与kube-apiserver通信使用HTTPS加证书鉴权</li>
+<li>这里启用<code>TLS-Bootstrap</code>实现kubelet证书动态签署证书</li>
+</ul>
+</blockquote>
+<p><strong>kube-proxy</strong></p>
+<blockquote>
+<ul>
+<li>Kube-proxy是实现Service的关键插件，kube-proxy会在每台节点上执行，然后监听API Server的Service与Endpoint资源物件的改变，然后来依据变化调用相应的组件来实现网路的转发</li>
+<li>kube-proxy可以使用<code>userspace</code>（基本已废弃）、<code>iptables</code>（默认方式）和<code>ipvs</code>来实现数据报文的转发</li>
+<li>这里使用的是性能更好、适合大规模使用的<code>ipvs</code></li>
+<li>以HTTPS形式加证书验证与API Server的通信</li>
 </ul>
 </blockquote>
 <blockquote>
@@ -989,7 +1019,9 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kube-proxy.service &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kube-Proxy Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=-/etc/kubernetes/kube-proxy.conf</span><br><span class="line">ExecStart=/usr/local/bin/kube-proxy \$KUBE_PROXY_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 <h2 id="分发二进制文件"><a href="#分发二进制文件" class="headerlink" title="分发二进制文件"></a>分发二进制文件</h2><blockquote>
 <ul>
+<li>对于新增的worker节点，需要分发二进制文件</li>
 <li>直接使用master节点上面的二进制文件分发</li>
+<li>这里在分发二进制文件前，会先给worker节点建立对应的目录</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for NODE in "$&#123;!WorkerArray[@]&#125;";do</span><br><span class="line">    echo "--- $NODE ---"</span><br><span class="line">    ssh $NODE mkdir -p /opt/cni/bin /etc/cni/net.d /etc/kubernetes/pki</span><br><span class="line">    rsync -avpt /usr/local/bin/kubelet /usr/local/bin/kube-proxy $NODE:/usr/local/bin/</span><br><span class="line">    rsync -avpt /opt/cni/bin/* $NODE:/opt/cni/bin/</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
@@ -1001,13 +1033,13 @@
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl get node</span><br><span class="line">NAME      STATUS       ROLES        AGE       VERSION</span><br><span class="line">k8s-m1    NotReady     k8s-master   11m       v1.11.5</span><br><span class="line">k8s-m2    NotReady     k8s-master   11m       v1.11.5</span><br><span class="line">k8s-m3    NotReady     k8s-master   11m       v1.11.5</span><br></pre></td></tr></table></figure>
-<h1 id="kubernetes-Core-Addons"><a href="#kubernetes-Core-Addons" class="headerlink" title="kubernetes Core Addons"></a>kubernetes Core Addons</h1><h2 id="网络组件部署"><a href="#网络组件部署" class="headerlink" title="网络组件部署"></a>网络组件部署</h2><blockquote>
+<h1 id="kubernetes-Core-Addons"><a href="#kubernetes-Core-Addons" class="headerlink" title="kubernetes Core Addons"></a>kubernetes Core Addons</h1><h2 id="网络组件部署（任选其一）"><a href="#网络组件部署（任选其一）" class="headerlink" title="网络组件部署（任选其一）"></a>网络组件部署（任选其一）</h2><blockquote>
 <ul>
 <li>只要符合CNI规范的网络组件都可以给kubernetes使用</li>
 <li>网络组件清单可以在这里看到<a href="https://kubernetes.io/docs/concepts/cluster-administration/addons/" target="_blank" rel="noopener">Network Plugins</a></li>
-<li>这里只列举kube-flannel和calico，flannel和calico的区别可以自己去找资料</li>
+<li>这里只列举<code>kube-flannel</code>和<code>calico</code>，flannel和calico的区别可以自己去找资料</li>
 <li><font color="red">网络组件只能选一个来部署</font></li>
-<li>本文使用<code>kube-flannel</code>部署网络组件，calico暂未测试</li>
+<li>本文使用<code>kube-flannel</code>部署网络组件，<code>calico</code>已测试可用</li>
 <li>在<font color="red">k8s-m1</font>上操作</li>
 </ul>
 </blockquote>
@@ -1032,8 +1064,10 @@
 </li>
 <li><p>这里以amd64作为例子，其他的可以自行根据需要修改或者直接删除不需要的daemonset</p>
 </li>
-<li><p>官方yml文件已经配置好pod-network-cidr 10.244.0.0/16，如果需要更改，可以修改kube-flannel.yml</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>   sed -e 's,"Network": "10.244.0.0/16","Network": "x.x.x.x/x" -i kube-flannel.yml</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>官方yml文件已经配置好容器网络为<code>10.244.0.0/16</code>，这里需要跟<code>kube-controller-manager.conf</code>里面的<code>--cluster-cidr</code>匹配</p>
+</li>
+<li><p>如果在<code>kube-controller-manager.conf</code>里面把<code>--cluster-cidr</code>改成了其他地址段，例如<code>192.168.0.0/16</code>，用以下命令替换<code>kube-flannel.yml</code>相应的字段</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>   sed -e 's,"Network": "10.244.0.0/16","Network": "192.168.0.0/16," -i kube-flannel.yml</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
@@ -1061,21 +1095,25 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system get pod -l k8s-app=flannel</span><br><span class="line">NAME                READY     STATUS    RESTARTS   AGE</span><br><span class="line">kube-flannel-ds-27jwl   2/2       Running   0          59s</span><br><span class="line">kube-flannel-ds-4fgv6   2/2       Running   0          59s</span><br><span class="line">kube-flannel-ds-mvrt7   2/2       Running   0          59s</span><br></pre></td></tr></table></figure>
 <h3 id="Calico"><a href="#Calico" class="headerlink" title="Calico"></a>Calico</h3><blockquote>
 <ul>
+<li>Calico 是一款纯 Layer 3 的网络，节点之间基于BGP协议来通信。</li>
+<li><a href="https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/calico" target="_blank" rel="noopener">部署文档</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
 <li>切换工作目录</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /root/yaml/network-plugin/calico</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
-<li>Calico 是一款纯 Layer 3 的网络，节点之间基于BGP协议来通信。</li>
-<li><a href="https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/calico" target="_blank" rel="noopener">部署文档</a></li>
 <li>这里使用kubernetes API来保存网络信息</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml</span><br><span class="line">wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
-<li>由于pod网络为<code>10.244.0.0/16</code>与Calico官方yml文件定义的<code>192.168.0.0/16</code>不一样，需要更改</li>
+<li>官方yml文件默认配置容器网络为<code>192.168.0.0/16</code>，这里需要跟<code>kube-controller-manager.conf</code>里面的<code>--cluster-cidr</code>匹配，需要替换相应字段</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 's,value: "192.168.0.0/16",value: "10.244.0.0/16",g' -i calico.yaml</span><br></pre></td></tr></table></figure>
@@ -1115,10 +1153,10 @@
 <blockquote>
 <ul>
 <li>yml文件里面定义了<code>clusterIP: 10.96.0.10</code>这里需要与kubelet.conf里面定义的<code>--cluster-dns=10.96.0.10</code>一致</li>
-<li>如果需要更改为<code>x.x.x.x</code>可以这么操作</li>
+<li>如果kubelet.conf里面的<code>--cluster-dns</code>改成别的，例如<code>192.168.0.10</code>，这里也要做相应变动，不然pod找不到DNS，无法正常工作</li>
 </ul>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 's,clusterIP: 10.96.0.10,clusterIP: x.x.x.x,g' -i coredns.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 's,clusterIP: 10.96.0.10,clusterIP: 192.168.0.10,g' -i coredns.yml</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>部署CoreDNS</li>
@@ -1146,6 +1184,7 @@
 <blockquote>
 <ul>
 <li>验证集群DNS解析</li>
+<li>上一个命令获取到pod名字为<code>busybox-7b9bfb5658-872gj</code>，通过kubectl命令连接到pod终端运行nslookup命令</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it busybox-7b9bfb5658-4cz94 -- nslookup kubernetes</span><br><span class="line">Server:    10.96.0.10</span><br><span class="line">Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local</span><br><span class="line"></span><br><span class="line">Name:      kubernetes</span><br><span class="line">Address 1: 10.96.0.1 kubernetes.default.svc.cluster.local</span><br></pre></td></tr></table></figure>
@@ -1156,14 +1195,13 @@
 <li>HPA控制器基于Master的kube-controller-manager服务启动参数–horizontal-pod-autoscaler-sync-period定义是时长（默认30秒）,周期性监控目标Pod的CPU使用率,并在满足条件时对ReplicationController或Deployment中的Pod副本数进行调整,以符合用户定义的平均Pod<br>CPU使用率。</li>
 <li>在新版本的kubernetes中 Pod CPU使用率不在来源于heapster,而是来自于metrics-server</li>
 <li>官网原话是 The –horizontal-pod-autoscaler-use-rest-clients is true or unset.<br>Setting this to false switches to Heapster-based autoscaling, which is<br>deprecated.</li>
-<li>配置不够不要硬上</li>
 <li>在<font color="red">k8s-m1</font>上操作</li>
 </ul>
 </blockquote>
 <blockquote>
 <ul>
-<li>设置apiserver参数</li>
-<li>这里的front-proxy证书，在证书生成阶段已经完成</li>
+<li>设置kube-apiserver参数，这里在配置kube-apiserver阶段已经加进去了</li>
+<li>front-proxy证书，在证书生成阶段已经完成且已分发</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.pem  \</span><br><span class="line">--proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.pem  \</span><br><span class="line">--proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client-key.pem  \</span><br><span class="line">--requestheader-allowed-names=aggregator  \</span><br><span class="line">--requestheader-group-headers=X-Remote-Group  \</span><br><span class="line">--requestheader-extra-headers-prefix=X-Remote-Extra-  \</span><br><span class="line">--requestheader-username-headers=X-Remote-User  \</span><br></pre></td></tr></table></figure>
@@ -1365,14 +1403,19 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kubectl get svc -n ingress-nginx --show-labels</span><br><span class="line">NAME            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE</span><br><span class="line">ingress-nginx   NodePort   10.96.250.140   &lt;none&gt;        80:32603/TCP,443:30083/TCP   1m</span><br><span class="line"></span><br><span class="line">curl http://172.16.80.201:32603</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;404 Not Found&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;nginx/1.15.6&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
+<p>一些需要注意的点</p>
 <ul>
-<li>一些需要注意的点</li>
+<li><p>这里部署之后，是<code>deployment</code>，且通过<code>nodePort</code>暴露服务</p>
+</li>
+<li><p>也可以修改yml文件，将<code>Ingress-nginx</code>部署为<code>DaemonSet</code></p>
+<ul>
+<li>使用<code>labels</code>和<code>nodeSelector</code>来指定运行ingress-nginx的节点</li>
+<li>使用<code>hostNetwork=true</code>来共享主机网络命名空间，或者使用<code>hostPort</code>指定主机端口映射</li>
+</ul>
+</li>
 </ul>
 </blockquote>
-<p>可修改yml文件，将<code>Ingress-nginx</code>部署为<code>DaemonSet</code></p>
-<p>使用<code>labels</code>和<code>nodeSelector</code>来指定运行ingress-nginx的节点</p>
-<p>使用<code>hostNetwork=true</code>来共享主机网络命名空间，或者使用<code>hostPort</code>指定主机端口映射</p>
-<h2 id="Prometheus-Operator"><a href="#Prometheus-Operator" class="headerlink" title="Prometheus Operator"></a>Prometheus Operator</h2>
+<h2 id="Helm"><a href="#Helm" class="headerlink" title="Helm"></a>Helm</h2><h2 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h2><h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2>
       
     </div>
     
@@ -1392,7 +1435,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html" title="【持续更新中】二进制部署 kubernetes v1.11.5 高可用集群">https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html</a>
+    <a href="https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html" title="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.5 高可用集群.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -1574,7 +1617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事前准备"><span class="nav-number">2.</span> <span class="nav-text">事前准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义集群变量"><span class="nav-number">3.</span> <span class="nav-text">定义集群变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载所需的二进制文件"><span class="nav-number">4.</span> <span class="nav-text">下载所需的二进制文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成集群Key和Certificates"><span class="nav-number">5.</span> <span class="nav-text">生成集群Key和Certificates</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">5.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载CFSSL工具"><span class="nav-number">5.2.</span> <span class="nav-text">下载CFSSL工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建工作目录"><span class="nav-number">5.3.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用于生成证书的json文件"><span class="nav-number">5.4.</span> <span class="nav-text">创建用于生成证书的json文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建etcd证书"><span class="nav-number">5.5.</span> <span class="nav-text">创建etcd证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建kubernetes证书"><span class="nav-number">5.6.</span> <span class="nav-text">创建kubernetes证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建kubeconfig文件"><span class="nav-number">5.7.</span> <span class="nav-text">创建kubeconfig文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理证书CSR文件"><span class="nav-number">5.8.</span> <span class="nav-text">清理证书CSR文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文件权限和属主"><span class="nav-number">5.9.</span> <span class="nav-text">修改文件权限和属主</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查生成的文件"><span class="nav-number">5.10.</span> <span class="nav-text">检查生成的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发证书文件和kubeconfig到master节点"><span class="nav-number">5.11.</span> <span class="nav-text">分发证书文件和kubeconfig到master节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-master节点"><span class="nav-number">6.</span> <span class="nav-text">kubernetes-master节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#部署配置Keepalived和HAProxy"><span class="nav-number">6.1.</span> <span class="nav-text">部署配置Keepalived和HAProxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换工作目录"><span class="nav-number">6.1.1.</span> <span class="nav-text">切换工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Keepalived和HAProxy"><span class="nav-number">6.1.2.</span> <span class="nav-text">安装Keepalived和HAProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置keepalived"><span class="nav-number">6.1.3.</span> <span class="nav-text">配置keepalived</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置haproxy"><span class="nav-number">6.1.4.</span> <span class="nav-text">配置haproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件到master节点"><span class="nav-number">6.1.5.</span> <span class="nav-text">分发配置文件到master节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动keepalived和haproxy"><span class="nav-number">6.1.6.</span> <span class="nav-text">启动keepalived和haproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证VIP"><span class="nav-number">6.1.7.</span> <span class="nav-text">验证VIP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署etcd集群"><span class="nav-number">6.2.</span> <span class="nav-text">部署etcd集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置etcd-service文件"><span class="nav-number">6.2.1.</span> <span class="nav-text">配置etcd.service文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etcd-config-yml模板"><span class="nav-number">6.2.2.</span> <span class="nav-text">etcd.config.yml模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件"><span class="nav-number">6.2.3.</span> <span class="nav-text">分发配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动etcd集群"><span class="nav-number">6.2.4.</span> <span class="nav-text">启动etcd集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证etcd集群状态"><span class="nav-number">6.2.5.</span> <span class="nav-text">验证etcd集群状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Master组件服务"><span class="nav-number">6.3.</span> <span class="nav-text">Master组件服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#master组件配置模板"><span class="nav-number">6.3.1.</span> <span class="nav-text">master组件配置模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemd服务文件"><span class="nav-number">6.3.2.</span> <span class="nav-text">systemd服务文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件到各master节点"><span class="nav-number">6.3.3.</span> <span class="nav-text">分发配置文件到各master节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动kubernetes服务"><span class="nav-number">6.3.4.</span> <span class="nav-text">启动kubernetes服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置kubectl"><span class="nav-number">6.3.5.</span> <span class="nav-text">设置kubectl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置命令补全"><span class="nav-number">6.3.6.</span> <span class="nav-text">设置命令补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置kubelet的bootstrap启动所需的RBAC"><span class="nav-number">6.3.7.</span> <span class="nav-text">设置kubelet的bootstrap启动所需的RBAC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-worker节点"><span class="nav-number">7.</span> <span class="nav-text">kubernetes worker节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#切换工作目录-1"><span class="nav-number">7.1.</span> <span class="nav-text">切换工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#worker组件配置模板"><span class="nav-number">7.2.</span> <span class="nav-text">worker组件配置模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#systemd服务文件-1"><span class="nav-number">7.3.</span> <span class="nav-text">systemd服务文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发二进制文件"><span class="nav-number">7.4.</span> <span class="nav-text">分发二进制文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发配置文件和服务文件"><span class="nav-number">7.5.</span> <span class="nav-text">分发配置文件和服务文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动服务"><span class="nav-number">7.6.</span> <span class="nav-text">启动服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取节点信息"><span class="nav-number">7.7.</span> <span class="nav-text">获取节点信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-Core-Addons"><span class="nav-number">8.</span> <span class="nav-text">kubernetes Core Addons</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络组件部署"><span class="nav-number">8.1.</span> <span class="nav-text">网络组件部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工作目录-1"><span class="nav-number">8.1.1.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kube-flannel"><span class="nav-number">8.1.2.</span> <span class="nav-text">kube-flannel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calico"><span class="nav-number">8.1.3.</span> <span class="nav-text">Calico</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务发现组件部署"><span class="nav-number">8.2.</span> <span class="nav-text">服务发现组件部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工作目录-2"><span class="nav-number">8.2.1.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreDNS"><span class="nav-number">8.2.2.</span> <span class="nav-text">CoreDNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证集群DNS服务"><span class="nav-number">8.2.3.</span> <span class="nav-text">验证集群DNS服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metrics-Server"><span class="nav-number">8.3.</span> <span class="nav-text">Metrics Server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#至此集群已具备基本功能"><span class="nav-number">9.</span> <span class="nav-text">至此集群已具备基本功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-Extra-Addons"><span class="nav-number">10.</span> <span class="nav-text">kubernetes Extra Addons</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dashboard"><span class="nav-number">10.1.</span> <span class="nav-text">Dashboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ingress-Controller"><span class="nav-number">10.2.</span> <span class="nav-text">Ingress Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prometheus-Operator"><span class="nav-number">10.3.</span> <span class="nav-text">Prometheus Operator</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事前准备"><span class="nav-number">2.</span> <span class="nav-text">事前准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义集群变量"><span class="nav-number">3.</span> <span class="nav-text">定义集群变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载所需的二进制文件"><span class="nav-number">4.</span> <span class="nav-text">下载所需的二进制文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分发二进制文件到master节点"><span class="nav-number">4.1.</span> <span class="nav-text">分发二进制文件到master节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发二进制文件到worker节点"><span class="nav-number">4.2.</span> <span class="nav-text">分发二进制文件到worker节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成集群Key和Certificates"><span class="nav-number">5.</span> <span class="nav-text">生成集群Key和Certificates</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">5.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载CFSSL工具"><span class="nav-number">5.2.</span> <span class="nav-text">下载CFSSL工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建工作目录"><span class="nav-number">5.3.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用于生成证书的json文件"><span class="nav-number">5.4.</span> <span class="nav-text">创建用于生成证书的json文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建etcd证书"><span class="nav-number">5.5.</span> <span class="nav-text">创建etcd证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建kubernetes证书"><span class="nav-number">5.6.</span> <span class="nav-text">创建kubernetes证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建kubeconfig文件"><span class="nav-number">5.7.</span> <span class="nav-text">创建kubeconfig文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理证书CSR文件"><span class="nav-number">5.8.</span> <span class="nav-text">清理证书CSR文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文件权限和属主"><span class="nav-number">5.9.</span> <span class="nav-text">修改文件权限和属主</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查生成的文件"><span class="nav-number">5.10.</span> <span class="nav-text">检查生成的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发证书文件和kubeconfig到master节点"><span class="nav-number">5.11.</span> <span class="nav-text">分发证书文件和kubeconfig到master节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-master节点"><span class="nav-number">6.</span> <span class="nav-text">kubernetes-master节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#部署配置Keepalived和HAProxy"><span class="nav-number">6.1.</span> <span class="nav-text">部署配置Keepalived和HAProxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换工作目录"><span class="nav-number">6.1.1.</span> <span class="nav-text">切换工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Keepalived和HAProxy"><span class="nav-number">6.1.2.</span> <span class="nav-text">安装Keepalived和HAProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置keepalived"><span class="nav-number">6.1.3.</span> <span class="nav-text">配置keepalived</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置haproxy"><span class="nav-number">6.1.4.</span> <span class="nav-text">配置haproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件到master节点"><span class="nav-number">6.1.5.</span> <span class="nav-text">分发配置文件到master节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动keepalived和haproxy"><span class="nav-number">6.1.6.</span> <span class="nav-text">启动keepalived和haproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证VIP"><span class="nav-number">6.1.7.</span> <span class="nav-text">验证VIP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署etcd集群"><span class="nav-number">6.2.</span> <span class="nav-text">部署etcd集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置etcd-service文件"><span class="nav-number">6.2.1.</span> <span class="nav-text">配置etcd.service文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etcd-config-yml模板"><span class="nav-number">6.2.2.</span> <span class="nav-text">etcd.config.yml模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件"><span class="nav-number">6.2.3.</span> <span class="nav-text">分发配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动etcd集群"><span class="nav-number">6.2.4.</span> <span class="nav-text">启动etcd集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证etcd集群状态"><span class="nav-number">6.2.5.</span> <span class="nav-text">验证etcd集群状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Master组件服务"><span class="nav-number">6.3.</span> <span class="nav-text">Master组件服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#master组件配置模板"><span class="nav-number">6.3.1.</span> <span class="nav-text">master组件配置模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systemd服务文件"><span class="nav-number">6.3.2.</span> <span class="nav-text">systemd服务文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分发配置文件到各master节点"><span class="nav-number">6.3.3.</span> <span class="nav-text">分发配置文件到各master节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动kubernetes服务"><span class="nav-number">6.3.4.</span> <span class="nav-text">启动kubernetes服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置kubectl"><span class="nav-number">6.3.5.</span> <span class="nav-text">设置kubectl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置命令补全"><span class="nav-number">6.3.6.</span> <span class="nav-text">设置命令补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置kubelet的bootstrap启动所需的RBAC"><span class="nav-number">6.3.7.</span> <span class="nav-text">设置kubelet的bootstrap启动所需的RBAC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-worker节点"><span class="nav-number">7.</span> <span class="nav-text">kubernetes worker节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#切换工作目录-1"><span class="nav-number">7.1.</span> <span class="nav-text">切换工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#worker组件配置模板"><span class="nav-number">7.2.</span> <span class="nav-text">worker组件配置模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#systemd服务文件-1"><span class="nav-number">7.3.</span> <span class="nav-text">systemd服务文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发二进制文件"><span class="nav-number">7.4.</span> <span class="nav-text">分发二进制文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分发配置文件和服务文件"><span class="nav-number">7.5.</span> <span class="nav-text">分发配置文件和服务文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动服务"><span class="nav-number">7.6.</span> <span class="nav-text">启动服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取节点信息"><span class="nav-number">7.7.</span> <span class="nav-text">获取节点信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-Core-Addons"><span class="nav-number">8.</span> <span class="nav-text">kubernetes Core Addons</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络组件部署（任选其一）"><span class="nav-number">8.1.</span> <span class="nav-text">网络组件部署（任选其一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工作目录-1"><span class="nav-number">8.1.1.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kube-flannel"><span class="nav-number">8.1.2.</span> <span class="nav-text">kube-flannel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calico"><span class="nav-number">8.1.3.</span> <span class="nav-text">Calico</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务发现组件部署"><span class="nav-number">8.2.</span> <span class="nav-text">服务发现组件部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工作目录-2"><span class="nav-number">8.2.1.</span> <span class="nav-text">创建工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreDNS"><span class="nav-number">8.2.2.</span> <span class="nav-text">CoreDNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证集群DNS服务"><span class="nav-number">8.2.3.</span> <span class="nav-text">验证集群DNS服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metrics-Server"><span class="nav-number">8.3.</span> <span class="nav-text">Metrics Server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#至此集群已具备基本功能"><span class="nav-number">9.</span> <span class="nav-text">至此集群已具备基本功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubernetes-Extra-Addons"><span class="nav-number">10.</span> <span class="nav-text">kubernetes Extra Addons</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dashboard"><span class="nav-number">10.1.</span> <span class="nav-text">Dashboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ingress-Controller"><span class="nav-number">10.2.</span> <span class="nav-text">Ingress Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Helm"><span class="nav-number">10.3.</span> <span class="nav-text">Helm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prometheus"><span class="nav-number">10.4.</span> <span class="nav-text">Prometheus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELK"><span class="nav-number">10.5.</span> <span class="nav-text">ELK</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1608,7 +1651,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.5k</span>
+    <span title="Site words total count">16.1k</span>
   
 </div>
 
