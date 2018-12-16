@@ -88,8 +88,8 @@
 <meta property="og:description" content="介绍本次部署方式为二进制可执行文件的方式部署   注意请根据自己的实际情况调整 对于生产环境部署，请注意某些参数的选择   如无特殊说明，均在k8s-m1节点上执行 参考博文感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建 【漠然】使用 Bootstrap Token 完成 TLS Bootstrapping 【张馆长">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
-<meta property="og:image" content="https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-16T15:35:10.566Z">
+<meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
+<meta property="og:updated_time" content="2018-12-16T15:39:36.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
 <meta name="twitter:description" content="介绍本次部署方式为二进制可执行文件的方式部署   注意请根据自己的实际情况调整 对于生产环境部署，请注意某些参数的选择   如无特殊说明，均在k8s-m1节点上执行 参考博文感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建 【漠然】使用 Bootstrap Token 完成 TLS Bootstrapping 【张馆长">
@@ -333,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-16T23:35:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-16T23:39:36+08:00">
                 2018-12-16
               </time>
             
@@ -1495,7 +1495,7 @@
 </li>
 </ul>
 </blockquote>
-<p><img src="https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/images/architecture.png" alt=""></p>
+<p><img src="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png" alt=""></p>
 <h3 id="部署Prometheus-Operator"><a href="#部署Prometheus-Operator" class="headerlink" title="部署Prometheus-Operator"></a>部署Prometheus-Operator</h3><h4 id="切换工作目录-3"><a href="#切换工作目录-3" class="headerlink" title="切换工作目录"></a>切换工作目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /root/yaml/prometheus-operator</span><br><span class="line">cd /root/yaml/prometheus-operator</span><br></pre></td></tr></table></figure>
 <h4 id="下载helm-chart"><a href="#下载helm-chart" class="headerlink" title="下载helm-chart"></a>下载helm-chart</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 添加coreos源</span><br><span class="line">helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/</span><br><span class="line"><span class="meta">#</span> 下载chart</span><br><span class="line">helm fetch coreos/prometheus-operator</span><br><span class="line">helm fetch coreos/kube-prometheus</span><br><span class="line"><span class="meta">#</span> 解压</span><br><span class="line">tar xvf prometheus-operator-0.0.29.tgz</span><br><span class="line">tar xzf kube-prometheus-0.0.105.tgz</span><br><span class="line"><span class="meta">#</span> 删除压缩包</span><br><span class="line">rm -rf prometheus-operator-0.0.29.tgz kube-prometheus-0.0.105.tgz</span><br></pre></td></tr></table></figure>
 <h4 id="修改values-yaml"><a href="#修改values-yaml" class="headerlink" title="修改values.yaml"></a>修改values.yaml</h4><blockquote>
