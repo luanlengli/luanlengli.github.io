@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-17T07:18:30.841Z">
+<meta property="og:updated_time" content="2018-12-17T07:22:25.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
 <meta name="twitter:description" content="更新记录  12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，修改etcd证书生成 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashboard、Ingress内容 12月10日添加kube-flannel、calico、CoreDNS内容 12月9日分拆master节点和work节">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-17T15:18:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-17T15:22:25+08:00">
                 2018-12-17
               </time>
             
@@ -1417,7 +1417,7 @@
 <ul>
 <li>这里通过运行helm命令安装时，指定一些变量来达到自定义配置的目的</li>
 <li>定义<code>grafana</code>初始admin密码为<code>admin</code></li>
-<li>定义<code></code>alertmanager<code>和</code>prometheus<code>使用</code>StorageClass<code>名为</code>rook-ceph-block<code>，访问模式为</code>ReadWriteOnce<code>，大小</code>5Gi`</li>
+<li>定义<code>alertmanager</code>和<code>prometheus</code>使用<code>StorageClass</code>名为<code>rook-ceph-block</code>，访问模式为<code>ReadWriteOnce</code>，大小<code>5Gi</code></li>
 <li>定义<code>grafana</code>、<code>alertmanager</code>、<code>prometheus</code>的<code>Service</code>类型为<code>NodePort</code></li>
 <li>这里的<code>--set</code>可以定义很多变量，具体可以<code>helm fetch coreos/kube-prometheus</code>下载之后解压，查看<code>kube-prometheus</code>里面的<code>values.yaml</code></li>
 </ul>
