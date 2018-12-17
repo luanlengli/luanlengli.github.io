@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-17T16:20:41.026Z">
+<meta property="og:updated_time" content="2018-12-17T16:30:43.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制部署 kubernetes v1.11.x 高可用集群">
 <meta name="twitter:description" content="更新记录  12月17日添加ELK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashboard、Ingress内容 12月10日添加kube-flannel、calico、C">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-18T00:20:41+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-18T00:30:43+08:00">
                 2018-12-18
               </time>
             
@@ -785,36 +785,36 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 应用上面定义的alias</span><br><span class="line">source /root/.bashrc</span><br><span class="line"><span class="meta">#</span> 使用v2 API访问etcd</span><br><span class="line">etcdctl2 cluster-health</span><br><span class="line"><span class="meta">#</span> 示例输出</span><br><span class="line">member 222fd3b0bb4a5931 is healthy: got healthy result from https://172.16.80.203:2379</span><br><span class="line">member 8349ef180b115a83 is healthy: got healthy result from https://172.16.80.201:2379</span><br><span class="line">member f525d2d797a7c465 is healthy: got healthy result from https://172.16.80.202:2379</span><br><span class="line">cluster is healthy</span><br><span class="line"><span class="meta">#</span> 使用v3 API访问etcd</span><br><span class="line">etcdctl3 endpoint health</span><br><span class="line"><span class="meta">#</span> 示例输出</span><br><span class="line">https://172.16.80.201:2379 is healthy: successfully committed proposal: took = 2.879402ms</span><br><span class="line">https://172.16.80.203:2379 is healthy: successfully committed proposal: took = 6.708566ms</span><br><span class="line">https://172.16.80.202:2379 is healthy: successfully committed proposal: took = 7.187607ms</span><br></pre></td></tr></table></figure>
 <h2 id="Master组件服务"><a href="#Master组件服务" class="headerlink" title="Master组件服务"></a>Master组件服务</h2><h3 id="master组件配置模板"><a href="#master组件配置模板" class="headerlink" title="master组件配置模板"></a>master组件配置模板</h3><h4 id="kube-apiserver-conf"><a href="#kube-apiserver-conf" class="headerlink" title="kube-apiserver.conf"></a>kube-apiserver.conf</h4><blockquote>
 <ul>
-<li>–allow-privileged=true<code>启用容器特权模式</code></li>
-<li>–apiserver-count=3<code>指定集群运行模式，其它节点处于阻塞状态</code></li>
-<li>–audit-policy-file=/etc/kubernetes/audit-policy.yml <code>基于audit-policy.yml文件定义的内容启动审计功能</code></li>
-<li>–authorization-mode=Node,RBAC<code>开启 Node 和 RBAC 授权模式，拒绝未授权的请求</code></li>
-<li>–enable-bootstrap-token-auth=true<code>启用 kubelet bootstrap 的 token 认证</code></li>
-<li>–experimental-encryption-provider-config=/etc/kubernetes/encryption.yml<code>启用加密特性将Secret数据加密存储到etcd</code></li>
-<li>–insecure-port=0<code>关闭监听非安全端口8080</code></li>
-<li>–runtime-config=api/all=true<code>启用所有版本的 APIs</code></li>
-<li>–service-cluster-ip-range=10.96.0.0/12<code>指定 Service Cluster IP 地址段</code></li>
-<li>–service-node-port-range=30000-32767<code>指定 NodePort 的端口范围</code></li>
-<li>–token-auth-file=/etc/kubernetes/token.csv<code>保存bootstrap的token信息</code></li>
+<li><code>--allow-privileged=true</code>启用容器特权模式</li>
+<li><code>--apiserver-count=3</code>指定集群运行模式，其它节点处于阻塞状态</li>
+<li><code>--audit-policy-file=/etc/kubernetes/audit-policy.yml</code> 基于audit-policy.yml文件定义的内容启动审计功能</li>
+<li><code>--authorization-mode=Node,RBAC</code>开启 Node 和 RBAC 授权模式，拒绝未授权的请求</li>
+<li><code>--enable-bootstrap-token-auth=true</code>启用 kubelet bootstrap 的 token 认证</li>
+<li><code>--experimental-encryption-provider-config=/etc/kubernetes/encryption.yml</code>启用加密特性将Secret数据加密存储到etcd</li>
+<li><code>--insecure-port=0</code>关闭监听非安全端口8080</li>
+<li><code>--runtime-config=api/all=true</code>启用所有版本的 APIs</li>
+<li><code>--service-cluster-ip-range=10.96.0.0/12</code>指定 Service Cluster IP 地址段</li>
+<li><code>--service-node-port-range=30000-32767</code>指定 NodePort 的端口范围</li>
+<li><code>--token-auth-file=/etc/kubernetes/token.csv</code>保存bootstrap的token信息</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kube-apiserver.conf.example &lt;&lt;EOF</span><br><span class="line">KUBE_APISERVER_ARGS=" \\</span><br><span class="line">--advertise-address=&#123;PUBLIC_IP&#125;  \\</span><br><span class="line">--allow-privileged=true  \\</span><br><span class="line">--apiserver-count=3 \\</span><br><span class="line">--audit-log-maxage=30  \\</span><br><span class="line">--audit-log-maxbackup=3  \\</span><br><span class="line">--audit-log-maxsize=100  \\</span><br><span class="line">--audit-log-path=/var/log/kube-audit/audit.log  \\</span><br><span class="line">--audit-policy-file=/etc/kubernetes/audit-policy.yml  \\</span><br><span class="line">--authorization-mode=Node,RBAC  \\</span><br><span class="line">--bind-address=&#123;PUBLIC_IP&#125; \\</span><br><span class="line">--client-ca-file=/etc/kubernetes/pki/kube-ca.pem  \\</span><br><span class="line">--enable-admission-plugins=Initializers,NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,ResourceQuota  \\</span><br><span class="line">--enable-bootstrap-token-auth=true  \\</span><br><span class="line">--etcd-cafile=/etc/kubernetes/pki/etcd-ca.pem  \\</span><br><span class="line">--etcd-certfile=/etc/kubernetes/pki/etcd-client.pem  \\</span><br><span class="line">--etcd-keyfile=/etc/kubernetes/pki/etcd-client-key.pem  \\</span><br><span class="line">--etcd-servers=$etcd_servers  \\</span><br><span class="line">--experimental-encryption-provider-config=/etc/kubernetes/encryption.yml  \\</span><br><span class="line">--event-ttl=1h  \\</span><br><span class="line">--insecure-port=0  \\</span><br><span class="line">--kubelet-client-certificate=/etc/kubernetes/pki/kube-apiserver.pem  \\</span><br><span class="line">--kubelet-client-key=/etc/kubernetes/pki/kube-apiserver-key.pem  \\</span><br><span class="line">--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname  \\</span><br><span class="line">--logtostderr=true  \\</span><br><span class="line">--proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.pem  \\</span><br><span class="line">--proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client-key.pem  \\</span><br><span class="line">--requestheader-allowed-names=aggregator  \\</span><br><span class="line">--requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.pem  \\</span><br><span class="line">--requestheader-extra-headers-prefix=X-Remote-Extra-  \\</span><br><span class="line">--requestheader-group-headers=X-Remote-Group  \\</span><br><span class="line">--requestheader-username-headers=X-Remote-User  \\</span><br><span class="line">--runtime-config=api/all=true  \\</span><br><span class="line">--secure-port=6443  \\</span><br><span class="line">--service-account-key-file=/etc/kubernetes/pki/sa.pem  \\</span><br><span class="line">--service-cluster-ip-range=10.96.0.0/12  \\</span><br><span class="line">--service-node-port-range=30000-32767 \\</span><br><span class="line">--storage-backend=etcd3 \\</span><br><span class="line">--tls-cert-file=/etc/kubernetes/pki/kube-apiserver.pem  \\</span><br><span class="line">--tls-private-key-file=/etc/kubernetes/pki/kube-apiserver-key.pem  \\</span><br><span class="line">--token-auth-file=/etc/kubernetes/token.csv \\</span><br><span class="line">--v=2  \\</span><br><span class="line">"</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 <h4 id="kube-controller-manager-conf"><a href="#kube-controller-manager-conf" class="headerlink" title="kube-controller-manager.conf"></a>kube-controller-manager.conf</h4><blockquote>
 <ul>
-<li>–allocate-node-cidrs=true<code>在cloud provider上分配和设置pod的CIDR</code></li>
-<li>–cluster-cidr=10.244.0.0/16<code>集群内的pod的CIDR范围，需要 --allocate-node-cidrs设为true</code></li>
-<li>–experimental-cluster-signing-duration=8670h0m0s<code>指定 TLS Bootstrap 证书的有效期</code></li>
-<li>–feature-gates=RotateKubeletServerCertificate=true<code>开启 kublet server 证书的自动更新特性</code></li>
-<li>–horizontal-pod-autoscaler-use-rest-clients=true<code>能够使用自定义资源（Custom Metrics）进行自动水平扩展</code></li>
-<li>–leader-elect=true<code>集群运行模式，启用选举功能，被选为 leader 的节点负责处理工作，其它节点为阻塞状态</code></li>
-<li>–node-cidr-mask-size=24<code>集群中node cidr的掩码</code></li>
-<li>–service-cluster-ip-range=10.96.0.0/16<code>指定 Service Cluster IP 网段，必须和 kube-apiserver 中的同名参数一致</code></li>
+<li><code>--allocate-node-cidrs=true</code>在cloud provider上分配和设置pod的CIDR</li>
+<li><code>--cluster-cidr=10.244.0.0/16</code>集群内的pod的CIDR范围，需要 –allocate-node-cidrs设为true</li>
+<li><code>--experimental-cluster-signing-duration=8670h0m0s</code>指定 TLS Bootstrap 证书的有效期</li>
+<li><code>--feature-gates=RotateKubeletServerCertificate=true</code>开启 kublet server 证书的自动更新特性</li>
+<li><code>--horizontal-pod-autoscaler-use-rest-clients=true</code>能够使用自定义资源（Custom Metrics）进行自动水平扩展</li>
+<li><code>--leader-elect=true</code>集群运行模式，启用选举功能，被选为 leader 的节点负责处理工作，其它节点为阻塞状态</li>
+<li><code>--node-cidr-mask-size=24</code>集群中node cidr的掩码</li>
+<li><code>--service-cluster-ip-range=10.96.0.0/16</code>指定 Service Cluster IP 网段，必须和 kube-apiserver 中的同名参数一致</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kube-controller-manager.conf.example &lt;&lt;EOF</span><br><span class="line">KUBE_CONTROLLER_MANAGER_ARGS=" \\</span><br><span class="line">--address=127.0.0.1 \\</span><br><span class="line">--allocate-node-cidrs=true \\</span><br><span class="line">--cluster-cidr=10.244.0.0/16 \\</span><br><span class="line">--cluster-signing-cert-file=/etc/kubernetes/pki/kube-ca.pem \\</span><br><span class="line">--cluster-signing-key-file=/etc/kubernetes/pki/kube-ca-key.pem \\</span><br><span class="line">--controllers=*,bootstrapsigner,tokencleaner \\</span><br><span class="line">--experimental-cluster-signing-duration=8670h0m0s \\</span><br><span class="line">--feature-gates=RotateKubeletServerCertificate=true \\</span><br><span class="line">--horizontal-pod-autoscaler-sync-period=10s \\</span><br><span class="line">--horizontal-pod-autoscaler-use-rest-clients=true \\</span><br><span class="line">--kubeconfig=/etc/kubernetes/kube-controller-manager.kubeconfig \\</span><br><span class="line">--leader-elect=true \\</span><br><span class="line">--logtostderr=true \\</span><br><span class="line">--node-cidr-mask-size=24 \\</span><br><span class="line">--node-monitor-grace-period=40s \\</span><br><span class="line">--node-monitor-period=5s \\</span><br><span class="line">--pod-eviction-timeout=2m0s \\</span><br><span class="line">--root-ca-file=/etc/kubernetes/pki/kube-ca.pem \\</span><br><span class="line">--service-account-private-key-file=/etc/kubernetes/pki/sa-key.pem \\</span><br><span class="line">--service-cluster-ip-range=10.96.0.0/16 \\</span><br><span class="line">--use-service-account-credentials=true \\</span><br><span class="line">--v=2 \\</span><br><span class="line">"</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 <h4 id="kube-scheduler-conf"><a href="#kube-scheduler-conf" class="headerlink" title="kube-scheduler.conf"></a>kube-scheduler.conf</h4><blockquote>
 <ul>
-<li>–leader-elect=true<code>集群运行模式，启用选举功能，被选为 leader 的节点负责处理工作，其它节点为阻塞状态</code></li>
+<li><code>--leader-elect=true</code>集群运行模式，启用选举功能，被选为 leader 的节点负责处理工作，其它节点为阻塞状态</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kube-scheduler.conf.example &lt;&lt;EOF</span><br><span class="line">KUBE_SCHEDULER_ARGS="\\</span><br><span class="line">--address=127.0.0.1 \\</span><br><span class="line">--algorithm-provider=DefaultProvider \\</span><br><span class="line">--kubeconfig=/etc/kubernetes/kube-scheduler.kubeconfig \\</span><br><span class="line">--leader-elect=true \\</span><br><span class="line">--logtostderr=true \\</span><br><span class="line">--v=2 \\</span><br><span class="line">"</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
@@ -911,31 +911,31 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /root/worker</span><br></pre></td></tr></table></figure>
 <h2 id="worker组件配置模板"><a href="#worker组件配置模板" class="headerlink" title="worker组件配置模板"></a>worker组件配置模板</h2><h3 id="kube-proxy-conf"><a href="#kube-proxy-conf" class="headerlink" title="kube-proxy.conf"></a>kube-proxy.conf</h3><blockquote>
 <ul>
-<li>–cleanup-ipvs=true<code>启动前清除ipvs规则</code></li>
-<li>–cluster-cidr=10.244.0.0/16<code>集群中pod的CIDR范围，从这个范围以外发送到服务集群IP的流量将被伪装，从POD发送到外部LoadBalanceIP的流量将被定向到各自的集群IP</code></li>
-<li>–ipvs-scheduler=rr<code>ipvs调度类型</code></li>
-<li>–masquerade-all<code>SNAT所有通过服务集群ip发送的通信</code></li>
+<li><code>--cleanup-ipvs=true</code>启动前清除ipvs规则</li>
+<li><code>--cluster-cidr=10.244.0.0/16</code>集群中pod的CIDR范围，从这个范围以外发送到服务集群IP的流量将被伪装，从POD发送到外部LoadBalanceIP的流量将被定向到各自的集群IP</li>
+<li><code>--ipvs-scheduler=rr</code>ipvs调度类型</li>
+<li><code>--masquerade-all</code>SNAT所有通过服务集群ip发送的通信</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kube-proxy.conf.example &lt;&lt;EOF</span><br><span class="line">KUBE_PROXY_ARGS=" \\</span><br><span class="line">--bind-address=0.0.0.0 \\</span><br><span class="line">--cleanup-ipvs=true \\</span><br><span class="line">--cluster-cidr=10.244.0.0/16 \\</span><br><span class="line">--config-sync-period=15m0s \\</span><br><span class="line">--ipvs-min-sync-period=0s \\</span><br><span class="line">--ipvs-scheduler=rr \\</span><br><span class="line">--ipvs-sync-period=30s \\</span><br><span class="line">--kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig \\</span><br><span class="line">--logtostderr=true \\</span><br><span class="line">--masquerade-all \\</span><br><span class="line">--proxy-mode=ipvs \\</span><br><span class="line">--v=2 \\</span><br><span class="line">"</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 <h3 id="kubelet-conf"><a href="#kubelet-conf" class="headerlink" title="kubelet.conf"></a>kubelet.conf</h3><blockquote>
 <ul>
-<li>–allow-privileged=true<code>允许以特权模式启动容器</code></li>
-<li>–bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig<code>指定bootstrap启动时使用的kubeconfig</code></li>
-<li>–cgroup-driver=cgroupfs<code>cgroups的驱动，可选systemd和cgroupfs</code></li>
-<li>–cluster-dns=10.96.0.10<code>集群内DNS服务的IP地址</code></li>
-<li>–cluster-domain=cluster.local.<code>集群的域名</code></li>
-<li>–fail-swap-on=false<code>检测到系统已启用swap分区时kubelet就会启动失败，这里关闭此功能</code></li>
-<li>–feature-gates=RotateKubeletClientCertificate=true,RotateKubeletServerCertificate=true<code>kubelet 在证书即将到期时会自动发起一个 renew 自己证书的 CSR 请求</code></li>
-<li>–hairpin-mode=promiscuous-bridge<code>hairpin-mode设置，默认值为promiscuous-bridge</code></li>
-<li>–kube-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1Gi<code>Kubernetes系统预留的资源配置</code></li>
-<li>–max-pods=110<code>当前节点kubelet所能运行的最大Pod数量</code></li>
-<li>–network-plugin=cni<code>定义网络插件，Pod声明周期管理使用此网络插件</code></li>
-<li>–node-labels<code>kubelet注册当前Node时设置的Label，以key=value的格式表示，多个labe以逗号分隔</code></li>
-<li>–pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.1<code>Pod的pause镜像</code></li>
-<li>–resolv-conf=/etc/resolv.conf<code>命名服务配置文件，用于容器内应用的DNS解析</code></li>
-<li>–serialize-image-pulls=true<code>顺序pull镜像</code></li>
-<li>–system-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1Gi<code>系统预留的资源配置</code></li>
+<li><code>--allow-privileged=true</code>允许以特权模式启动容器</li>
+<li><code>--bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig</code>指定bootstrap启动时使用的kubeconfig</li>
+<li><code>--cgroup-driver=cgroupfs</code>cgroups的驱动，可选systemd和cgroupfs</li>
+<li><code>--cluster-dns=10.96.0.10</code>集群内DNS服务的IP地址</li>
+<li><code>--cluster-domain=cluster.local.</code>集群的域名</li>
+<li><code>--fail-swap-on=false</code>检测到系统已启用swap分区时kubelet就会启动失败，这里关闭此功能</li>
+<li><code>--feature-gates=RotateKubeletClientCertificate=true,RotateKubeletServerCertificate=true</code>kubelet 在证书即将到期时会自动发起一个 renew 自己证书的 CSR 请求</li>
+<li><code>--hairpin-mode=promiscuous-bridge</code>hairpin-mode设置，默认值为promiscuous-bridge</li>
+<li>–kube-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1GiKubernetes系统预留的资源配置</li>
+<li><code>--max-pods=110</code>当前节点kubelet所能运行的最大Pod数量</li>
+<li><code>--network-plugin=cni</code>定义网络插件，Pod生命周期使用此网络插件</li>
+<li><code>--node-labels=node-role.kubernetes.io/node=&#39;&#39;</code>kubelet注册当前Node时设置的Label，以key=value的格式表示，多个labe以逗号分隔</li>
+<li><code>--pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.1</code>Pod的pause镜像</li>
+<li><code>--resolv-conf=/etc/resolv.conf</code>指定域名解析文件路径，用于容器内应用的DNS解析</li>
+<li><code>--serialize-image-pulls=true</code>顺序pull镜像</li>
+<li><code>--system-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1Gi</code>系统预留的资源配置</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; kubelet.conf.example &lt;&lt;EOF</span><br><span class="line">KUBELET_ARGS=" \\</span><br><span class="line">--allow-privileged=true \\</span><br><span class="line">--bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig \\</span><br><span class="line">--cert-dir=/etc/kubernetes/ssl \\</span><br><span class="line">--cgroup-driver=cgroupfs \\</span><br><span class="line">--cluster-dns=10.96.0.10 \\</span><br><span class="line">--cluster-domain=cluster.local. \\</span><br><span class="line">--cni-conf-dir=/etc/cni/net.d \\</span><br><span class="line">--cni-bin-dir=/opt/cni/bin \\</span><br><span class="line">--fail-swap-on=false \\</span><br><span class="line">--feature-gates=RotateKubeletClientCertificate=true,RotateKubeletServerCertificate=true \\</span><br><span class="line">--file-check-frequency=20s \\</span><br><span class="line">--hairpin-mode=promiscuous-bridge \\</span><br><span class="line">--healthz-bind-address=127.0.0.1 \\</span><br><span class="line">--healthz-port=10248 \\</span><br><span class="line">--image-gc-high-threshold=70 \\</span><br><span class="line">--image-gc-low-threshold=50 \\</span><br><span class="line">--kubeconfig=/etc/kubernetes/kubelet.kubeconfig \\</span><br><span class="line">--kube-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1Gi \\</span><br><span class="line">--logtostderr=true \\</span><br><span class="line">--max-open-files=1000000 \\</span><br><span class="line">--max-pods=110 \\</span><br><span class="line">--network-plugin=cni \\</span><br><span class="line">--node-ip=&#123;PUBLIC_IP&#125; \\</span><br><span class="line">--node-labels=node-role.kubernetes.io/node='' \\</span><br><span class="line">--node-status-update-frequency=20s \\</span><br><span class="line">--pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.1 \\</span><br><span class="line">--pod-manifest-path=/etc/kubernetes/manifests \\</span><br><span class="line">--pod-max-pids=-1 \\</span><br><span class="line">--port=10250 \\</span><br><span class="line">--read-only-port=10255 \\</span><br><span class="line">--resolv-conf=/etc/resolv.conf \\</span><br><span class="line">--serialize-image-pulls=true \\</span><br><span class="line">--sync-frequency=30s \\</span><br><span class="line">--system-reserved=cpu=200m,memory=500Mi,ephemeral-storage=1Gi \\</span><br><span class="line">--v=2 \\</span><br><span class="line">"</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
