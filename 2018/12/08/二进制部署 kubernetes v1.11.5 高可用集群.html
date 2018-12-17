@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-17T02:09:15.645Z">
+<meta property="og:updated_time" content="2018-12-17T02:15:02.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【持续填坑中】二进制部署 kubernetes v1.11.5 高可用集群">
 <meta name="twitter:description" content="介绍本次部署方式为二进制可执行文件的方式部署   注意请根据自己的实际情况调整 对于生产环境部署，请注意某些参数的选择   如无特殊说明，均在k8s-m1节点上执行 参考博文感谢两位大佬的文章，这里整合一下两位大佬的内容，结合自己的理解整理本文   【漠然】Kubernetes 1.10.1 集群搭建 【漠然】使用 Bootstrap Token 完成 TLS Bootstrapping 【张馆长">
@@ -333,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-17T10:09:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-17T10:15:02+08:00">
                 2018-12-17
               </time>
             
@@ -981,7 +981,7 @@
 </li>
 </ul>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">containers:</span><br><span class="line">- name: kube-flannel</span><br><span class="line">  image: zhangguanzhang/quay.io.coreos.flannel:v0.10.0-amd64</span><br><span class="line">  command:</span><br><span class="line">  - /opt/bin/flanneld</span><br><span class="line">  args:</span><br><span class="line">  - --ip-masq</span><br><span class="line">  - --kube-subnet-mgr</span><br><span class="line">  - --iface=ens33</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">containers:</span><br><span class="line">- name: kube-flannel</span><br><span class="line">  image: quay.io/coreos/flannel:v0.10.0-amd64</span><br><span class="line">  command:</span><br><span class="line">  - /opt/bin/flanneld</span><br><span class="line">  args:</span><br><span class="line">  - --ip-masq</span><br><span class="line">  - --kube-subnet-mgr</span><br><span class="line">  - --iface=ens33</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>部署kube-flannel</li>
