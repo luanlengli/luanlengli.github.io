@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="更新记录  12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashboard、Ingress内容 12月10日添加kube-flannel、calico、C">
+<meta name="description" content="更新记录  12月18日修改kubelet和kube-proxy启动时加载config file 12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashbo">
 <meta name="keywords" content="kubernetes docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二进制部署 kubernetes v1.11.x 高可用集群">
 <meta property="og:url" content="https://luanlengli.github.io/2018/12/08/二进制部署 kubernetes v1.11.x 高可用集群.html">
 <meta property="og:site_name" content="luanlengli&#39;s Blog">
-<meta property="og:description" content="更新记录  12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashboard、Ingress内容 12月10日添加kube-flannel、calico、C">
+<meta property="og:description" content="更新记录  12月18日修改kubelet和kube-proxy启动时加载config file 12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashbo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jimmysong.io/kubernetes-handbook/images/flannel-networking.png">
 <meta property="og:image" content="https://docs.projectcalico.org/images/calico-arch-gen-v3.2.svg">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-18T09:07:11.846Z">
+<meta property="og:updated_time" content="2018-12-18T09:09:57.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制部署 kubernetes v1.11.x 高可用集群">
-<meta name="twitter:description" content="更新记录  12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashboard、Ingress内容 12月10日添加kube-flannel、calico、C">
+<meta name="twitter:description" content="更新记录  12月18日修改kubelet和kube-proxy启动时加载config file 12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashbo">
 <meta name="twitter:image" content="https://jimmysong.io/kubernetes-handbook/images/flannel-networking.png">
 
 
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-18T17:07:11+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-18T17:09:57+08:00">
                 2018-12-18
               </time>
             
@@ -404,6 +404,7 @@
       
         <h1 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h1><blockquote>
 <ul>
+<li>12月18日修改kubelet和kube-proxy启动时加载<code>config file</code></li>
 <li>12月17日添加EFK部署内容</li>
 <li>12月16日添加prometheus-operator部署内容</li>
 <li>12月14日添加helm部署内容，拆分etcd的server证书和client证书</li>
