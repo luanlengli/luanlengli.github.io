@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2018-12-19T06:21:34.472Z">
+<meta property="og:updated_time" content="2018-12-19T08:48:35.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制部署 kubernetes v1.11.x 高可用集群">
 <meta name="twitter:description" content="更新记录  12月18日修改kubelet和kube-proxy启动时加载config file 12月17日添加EFK部署内容 12月16日添加prometheus-operator部署内容 12月14日添加helm部署内容，拆分etcd的server证书和client证书 12月13日添加rook-ceph部署内容 12月12日添加Metrics-Server内容 12月11日添加Dashbo">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T14:21:34+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T16:48:35+08:00">
                 2018-12-19
               </time>
             
@@ -517,7 +517,7 @@
 </ul>
 <p>集群系统需要各节点时间同步</p>
 <p>参考链接：<a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-using_chrony" target="_blank" rel="noopener">RHEL7官方文档</a></p>
-<p>这里使用公网对时，如果需要内网对时，请仔细配置</p>
+<p>这里使用公网对时，如果需要内网对时，请自行配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y chrony</span><br><span class="line">systemctl enable chronyd</span><br><span class="line">systemctl start chronyd</span><br></pre></td></tr></table></figure>
 <ul>
 <li>关闭firewalld和SELINUX（可根据实际情况自行决定关闭不需要的服务）</li>
