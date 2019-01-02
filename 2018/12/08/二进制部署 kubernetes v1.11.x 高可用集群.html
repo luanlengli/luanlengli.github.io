@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2019-01-02T05:20:36.990Z">
+<meta property="og:updated_time" content="2019-01-02T05:23:51.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【不定时更新】二进制部署 kubernetes v1.11.x 高可用集群">
 <meta name="twitter:description" content="更新记录  2019年1月2日添加RBAC规则，修复kube-apiserver无法访问kubelet的问题 2019年1月1日调整master节点和worker节点的操作步骤，添加CoreDNS的configmap中的hosts静态解析 2018年12月28日修改kube-prometheus部分，修复Prometheus的Targets无法发现的问题 2018年12月26日修改kubernet">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-02T13:20:36+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-02T13:23:51+08:00">
                 2019-01-02
               </time>
             
@@ -1184,8 +1184,7 @@
 <h3 id="访问Dashboard"><a href="#访问Dashboard" class="headerlink" title="访问Dashboard"></a>访问Dashboard</h3><blockquote>
 <ul>
 <li>kubernetes-dashborad的svc默认是<code>clusterIP</code>，需要修改为<code>nodePort</code>才能被外部访问</li>
-<li>此处指定nodePort为<code>30443</code></li>
-<li>如不指定<code>&quot;nodePort&quot;:30443</code>，则随机分配端口，分配范围在kube-apiserver的<code>--service-node-port-range</code>指定</li>
+<li>随机分配<code>NodePort</code>，分配范围由<code>kube-apiserver</code>的<code>--service-node-port-range</code>参数指定</li>
 </ul>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch -n kube-system svc kubernetes-dashboard -p '&#123;"spec":&#123;"type":"NodePort"&#125;&#125;'</span><br></pre></td></tr></table></figure>
