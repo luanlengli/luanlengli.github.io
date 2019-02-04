@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://rook.io/docs/rook/v0.8/media/kubernetes.png">
 <meta property="og:image" content="https://prometheus.io/assets/architecture.png">
 <meta property="og:image" content="https://github.com/coreos/prometheus-operator/raw/release-0.26/Documentation/user-guides/images/architecture.png">
-<meta property="og:updated_time" content="2019-01-21T09:15:15.872Z">
+<meta property="og:updated_time" content="2019-01-22T07:53:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【不定时更新】二进制部署 kubernetes v1.11.x 高可用集群">
 <meta name="twitter:description" content="更新记录  2019年1月7日添加基于ingress-nginx使用域名+HTTPS的方式访问kubernetes-Dashboard 2019年1月2日添加RBAC规则，修复kube-apiserver无法访问kubelet的问题 2019年1月1日调整master节点和worker节点的操作步骤，添加CoreDNS的configmap中的hosts静态解析 2018年12月28日修改kube-">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-21T17:15:15+08:00">
-                2019-01-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-22T15:53:54+08:00">
+                2019-01-22
               </time>
             
           </span>
@@ -1327,7 +1327,7 @@
 <li>具体说明请看<a href="https://github.com/BurdenBear/kube-charts-mirror" target="_blank" rel="noopener">这里</a></li>
 </ul>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm init --tiller-image gcrxio/tiller:v2.12.0 \</span><br><span class="line">          --service-account tiller \</span><br><span class="line">          --stable-repo-url https://burdenbear.github.io/kube-charts-mirror/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm init --tiller-image gcrxio/tiller:v2.12.0 \</span><br><span class="line">          --service-account tiller \</span><br><span class="line">          --stable-repo-url http://mirror.azure.cn/kubernetes/charts/</span><br></pre></td></tr></table></figure>
 <h3 id="检查安装情况"><a href="#检查安装情况" class="headerlink" title="检查安装情况"></a>检查安装情况</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system get pod -l app=helm,name=tiller</span><br><span class="line"><span class="meta">#</span> 输出示例</span><br><span class="line">NAME                             READY     STATUS    RESTARTS   AGE</span><br><span class="line">tiller-deploy-84fc6cd5f9-nz4m7   1/1       Running   0          1m</span><br><span class="line"></span><br><span class="line">helm version</span><br><span class="line"><span class="meta">#</span> 输出示例</span><br><span class="line">Client: &amp;version.Version&#123;SemVer:"v2.12.0", GitCommit:"d325d2a9c179b33af1a024cdb5a4472b6288016a", GitTreeState:"clean"&#125;</span><br><span class="line">Server: &amp;version.Version&#123;SemVer:"v2.12.0", GitCommit:"d325d2a9c179b33af1a024cdb5a4472b6288016a", GitTreeState:"clean"&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="添加命令行补全"><a href="#添加命令行补全" class="headerlink" title="添加命令行补全"></a>添加命令行补全</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">helm completion bash  &gt; /etc/bash_completion.d/helm</span><br><span class="line">source /etc/bash_completion.d/helm</span><br></pre></td></tr></table></figure>
 <h2 id="Rook（测试用途）"><a href="#Rook（测试用途）" class="headerlink" title="Rook（测试用途）"></a>Rook（<font color="red">测试用途</font>）</h2><h3 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h3><blockquote>
@@ -1740,7 +1740,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
