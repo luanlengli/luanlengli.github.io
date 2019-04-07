@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://luanlengli.github.io/"/>
-  <updated>2019-04-06T03:38:00.878Z</updated>
+  <updated>2019-04-07T14:29:35.339Z</updated>
   <id>https://luanlengli.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git pull免密码配置</title>
+    <link href="https://luanlengli.github.io/2019/04/07/git-pull%E5%85%8D%E5%AF%86%E7%A0%81%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://luanlengli.github.io/2019/04/07/git-pull免密码配置.html</id>
+    <published>2019-04-07T14:25:00.000Z</published>
+    <updated>2019-04-07T14:29:35.339Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul><li>git 拉取代码的时候，如果不使用密钥的方式时，会要求输入用户密码，非常繁琐</li><li>为此需要配置免账号密码登录</li></ul><h1 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h1><ul><li>切换到用户家目录</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure><ul><li>运行git命令</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><ul><li>此命令会在用户家目录生成一个<code>.gitconfig</code>，内容如下</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[credential]</span><br><span class="line">helper = store</span><br></pre></td></tr></table></figure><ul><li>再次运行<code>git pull</code>还是会提示输入用户密码，命令会在用户家目录生成<code>.git-credentials</code>文件，里面会保存刚才输入的用户密码。</li><li>后续操作git的时候就不会要求输入用户密码了</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;git 拉取代码的时候，如果不使用密钥的方式时，会要求输入用户密码，非常繁琐&lt;/li&gt;&lt;li&gt;为此需要配置免账号密码登录&lt;/li&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="https://luanlengli.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>阿里云RDS数据库MySQL5.7实例主从搭建过程</title>
@@ -223,9 +246,9 @@
     </summary>
     
     
-      <category term="Mariadb/MySQL" scheme="https://luanlengli.github.io/tags/Mariadb-MySQL/"/>
-    
       <category term="Linux" scheme="https://luanlengli.github.io/tags/Linux/"/>
+    
+      <category term="Mariadb/MySQL" scheme="https://luanlengli.github.io/tags/Mariadb-MySQL/"/>
     
   </entry>
   
