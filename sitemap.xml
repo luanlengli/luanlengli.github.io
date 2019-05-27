@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luanlengli.github.io/2019/02/04/kubernetes-TLS-Bootstrap%E4%B8%8E%E8%8A%82%E7%82%B9%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%8F%91.html</loc>
+    
+    <lastmod>2019-05-27T05:53:13.401Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://luanlengli.github.io/2019/05/24/PostgreSQL10%E6%B5%81%E5%A4%8D%E5%88%B6-PGPool-II%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%BA%93HA%E4%B8%BB%E5%A4%87%E5%88%87%E6%8D%A2.html</loc>
     
     <lastmod>2019-05-27T03:23:00.007Z</lastmod>
@@ -96,6 +103,13 @@
     <loc>https://luanlengli.github.io/2019/02/15/MySQL5-7%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html</loc>
     
     <lastmod>2019-03-29T05:10:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2019/02/12/kubectl%E5%91%BD%E4%BB%A4%E7%9A%84%E7%94%A8%E6%B3%95.html</loc>
+    
+    <lastmod>2019-03-25T07:10:08.000Z</lastmod>
     
   </url>
   
