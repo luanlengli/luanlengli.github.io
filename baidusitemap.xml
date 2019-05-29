@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://luanlengli.github.io/2019/05/29/Kong-API%E7%BD%91%E5%85%B3%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95.html</loc>
-    <lastmod>2019-05-29T07:50:46.987Z</lastmod>
+    <loc>https://luanlengli.github.io/2019/05/28/PostgreSQL%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D.html</loc>
+    <lastmod>2019-05-29T08:27:48.826Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/05/20/PostgreSQL10%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96.html</loc>
-    <lastmod>2019-05-29T05:56:35.427Z</lastmod>
+    <lastmod>2019-05-29T08:21:43.342Z</lastmod>
+  </url>  <url>
+    <loc>https://luanlengli.github.io/2019/05/29/Kong-API%E7%BD%91%E5%85%B3%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95.html</loc>
+    <lastmod>2019-05-29T07:50:46.987Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/05/25/PostgreSQL10%E6%90%AD%E5%BB%BA%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%95%B0%E6%8D%AE%E5%BA%93TimescaleDB.html</loc>
     <lastmod>2019-05-29T03:33:40.743Z</lastmod>
