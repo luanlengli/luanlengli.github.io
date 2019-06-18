@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luanlengli.github.io/2019/01/08/%E4%BB%A5DaemonSet%E7%9A%84%E6%96%B9%E5%BC%8F%E8%BF%90%E8%A1%8Ckube-proxy.html</loc>
+    
+    <lastmod>2019-06-18T09:41:13.478Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2019/02/12/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90kubeconfig%E6%96%87%E4%BB%B6.html</loc>
+    
+    <lastmod>2019-06-18T09:40:55.139Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2018/12/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2%20kubernetes%20v1.11.x%20%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4.html</loc>
+    
+    <lastmod>2019-06-18T09:40:44.030Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2019/02/04/kubernetes-TLS-Bootstrap%E4%B8%8E%E8%8A%82%E7%82%B9%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%8F%91.html</loc>
+    
+    <lastmod>2019-06-18T09:40:30.773Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://luanlengli.github.io/2019/06/12/kubeadm%E9%83%A8%E7%BD%B2kubernetes-1.13.x%E9%9B%86%E7%BE%A4.html</loc>
     
-    <lastmod>2019-06-18T09:35:50.456Z</lastmod>
+    <lastmod>2019-06-18T09:40:20.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2019/02/12/kubectl%E5%91%BD%E4%BB%A4%E7%9A%84%E7%94%A8%E6%B3%95.html</loc>
+    
+    <lastmod>2019-06-18T09:40:11.877Z</lastmod>
     
   </url>
   
@@ -79,30 +114,9 @@
   </url>
   
   <url>
-    <loc>https://luanlengli.github.io/2019/02/12/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90kubeconfig%E6%96%87%E4%BB%B6.html</loc>
-    
-    <lastmod>2019-05-28T06:38:11.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luanlengli.github.io/2018/12/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2%20kubernetes%20v1.11.x%20%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4.html</loc>
-    
-    <lastmod>2019-05-28T06:37:34.604Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://luanlengli.github.io/2018/12/11/CentOS7%E4%BD%BF%E7%94%A8%E7%A4%BE%E5%8C%BAYUM%E6%BA%90%E5%AE%89%E8%A3%85Mariadb-Galera%E9%9B%86%E7%BE%A4.html</loc>
     
     <lastmod>2019-05-28T06:36:23.421Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luanlengli.github.io/2019/02/04/kubernetes-TLS-Bootstrap%E4%B8%8E%E8%8A%82%E7%82%B9%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%8F%91.html</loc>
-    
-    <lastmod>2019-05-27T05:53:13.401Z</lastmod>
     
   </url>
   
@@ -117,13 +131,6 @@
     <loc>https://luanlengli.github.io/2019/02/21/Elasticsearch-5-6-x%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.html</loc>
     
     <lastmod>2019-05-21T03:15:10.572Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luanlengli.github.io/2019/01/08/%E4%BB%A5DaemonSet%E7%9A%84%E6%96%B9%E5%BC%8F%E8%BF%90%E8%A1%8Ckube-proxy.html</loc>
-    
-    <lastmod>2019-05-20T15:30:08.000Z</lastmod>
     
   </url>
   
@@ -145,13 +152,6 @@
     <loc>https://luanlengli.github.io/2019/04/07/git-pull%E5%85%8D%E5%AF%86%E7%A0%81%E9%85%8D%E7%BD%AE.html</loc>
     
     <lastmod>2019-04-07T14:29:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luanlengli.github.io/2019/02/12/kubectl%E5%91%BD%E4%BB%A4%E7%9A%84%E7%94%A8%E6%B3%95.html</loc>
-    
-    <lastmod>2019-03-25T07:10:08.000Z</lastmod>
     
   </url>
   
