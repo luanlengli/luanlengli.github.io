@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://luanlengli.github.io/2019/07/02/Kong-Ingress-Controller%E9%83%A8%E7%BD%B2.html</loc>
+    <lastmod>2019-07-02T07:15:10.351Z</lastmod>
+  </url>  <url>
+    <loc>https://luanlengli.github.io/2019/07/02/Kubernetes-deployment%E6%A8%A1%E6%9D%BF.html</loc>
+    <lastmod>2019-07-02T03:31:12.085Z</lastmod>
+  </url>  <url>
     <loc>https://luanlengli.github.io/2018/12/05/CentOS-7-6-1810-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C.html</loc>
-    <lastmod>2019-07-01T13:10:49.985Z</lastmod>
+    <lastmod>2019-07-02T02:47:35.846Z</lastmod>
+  </url>  <url>
+    <loc>https://luanlengli.github.io/2018/12/11/%E4%BD%BF%E7%94%A8Docker%E6%89%93%E5%8C%85shadowsocks-libev%E9%95%9C%E5%83%8F.html</loc>
+    <lastmod>2019-07-01T17:21:29.934Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/06/29/Ubuntu-18.04-Server%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C.html</loc>
     <lastmod>2019-06-29T11:55:19.715Z</lastmod>
@@ -36,9 +45,6 @@
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/06/12/kubeadm%E9%83%A8%E7%BD%B2kubernetes-1.13.x%E9%9B%86%E7%BE%A4.html</loc>
     <lastmod>2019-06-19T13:13:51.000Z</lastmod>
-  </url>  <url>
-    <loc>https://luanlengli.github.io/2018/12/11/%E4%BD%BF%E7%94%A8Docker%E6%89%93%E5%8C%85shadowsocks-libev%E9%95%9C%E5%83%8F.html</loc>
-    <lastmod>2019-06-18T09:42:03.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/01/08/%E4%BB%A5DaemonSet%E7%9A%84%E6%96%B9%E5%BC%8F%E8%BF%90%E8%A1%8Ckube-proxy.html</loc>
     <lastmod>2019-06-18T09:41:13.000Z</lastmod>
