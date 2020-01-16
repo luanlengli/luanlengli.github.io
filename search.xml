@@ -85,8 +85,8 @@
         <category>Kubernetes</category>
       </categories>
       <tags>
-        <tag>Elasticsearch</tag>
         <tag>Kubernetes</tag>
+        <tag>Elasticsearch</tag>
       </tags>
   </entry>
   <entry>
@@ -122,8 +122,8 @@
         <category>Windows</category>
       </categories>
       <tags>
-        <tag>Windows</tag>
         <tag>Docker</tag>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -157,8 +157,8 @@
         <category>Kong</category>
       </categories>
       <tags>
-        <tag>Kong</tag>
         <tag>Kubernetes</tag>
+        <tag>Kong</tag>
       </tags>
   </entry>
   <entry>
@@ -203,8 +203,8 @@
         <category>PostgreSQL</category>
       </categories>
       <tags>
-        <tag>PostgreSQL</tag>
         <tag>Prometheus</tag>
+        <tag>PostgreSQL</tag>
       </tags>
   </entry>
   <entry>
