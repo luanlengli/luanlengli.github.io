@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://luanlengli.github.io/2019/12/17/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8EIstio%E7%9A%84ServiceMesh-02Ingress&Egress.html</loc>
+    <loc>https://luanlengli.github.io/2019/12/19/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8EIstio%E7%9A%84ServiceMesh-03%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86.html</loc>
     
-    <lastmod>2020-03-20T01:50:26.587Z</lastmod>
+    <lastmod>2020-03-20T02:39:26.461Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://luanlengli.github.io/2019/12/18/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8EIstio%E7%9A%84ServiceMesh-02Ingress&Egress.html</loc>
+    
+    <lastmod>2020-03-20T02:39:11.758Z</lastmod>
     
   </url>
   
@@ -75,13 +82,6 @@
     <loc>https://luanlengli.github.io/2018/12/18/Adobe-Flash-Player%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.html</loc>
     
     <lastmod>2020-01-09T01:22:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luanlengli.github.io/2019/12/17/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8EIstio%E7%9A%84ServiceMesh-03%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86.html</loc>
-    
-    <lastmod>2020-01-07T12:12:34.000Z</lastmod>
     
   </url>
   
