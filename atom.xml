@@ -226,9 +226,9 @@
       <category term="Windows" scheme="https://luanlengli.github.io/categories/Linux/Windows/"/>
     
     
-      <category term="Windows" scheme="https://luanlengli.github.io/tags/Windows/"/>
-    
       <category term="Linux" scheme="https://luanlengli.github.io/tags/Linux/"/>
+    
+      <category term="Windows" scheme="https://luanlengli.github.io/tags/Windows/"/>
     
   </entry>
   
@@ -471,9 +471,9 @@
     </summary>
     
     
-      <category term="Windows" scheme="https://luanlengli.github.io/tags/Windows/"/>
-    
       <category term="Linux" scheme="https://luanlengli.github.io/tags/Linux/"/>
+    
+      <category term="Windows" scheme="https://luanlengli.github.io/tags/Windows/"/>
     
       <category term="OpenVPN" scheme="https://luanlengli.github.io/tags/OpenVPN/"/>
     
@@ -552,9 +552,9 @@
       <category term="Kubernetes" scheme="https://luanlengli.github.io/categories/Elasticsearch/Kubernetes/"/>
     
     
-      <category term="Elasticsearch" scheme="https://luanlengli.github.io/tags/Elasticsearch/"/>
-    
       <category term="Kubernetes" scheme="https://luanlengli.github.io/tags/Kubernetes/"/>
+    
+      <category term="Elasticsearch" scheme="https://luanlengli.github.io/tags/Elasticsearch/"/>
     
   </entry>
   
