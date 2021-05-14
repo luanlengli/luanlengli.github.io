@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://luanlengli.github.io/2021/05/14/%E6%88%B4%E5%B0%94Precision7920%E5%B7%A5%E4%BD%9C%E7%AB%99%E5%AE%89%E8%A3%85Ubuntu%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83.html</loc>
+    <lastmod>2021-05-14T05:58:56.537Z</lastmod>
+  </url>  <url>
+    <loc>https://luanlengli.github.io/2019/06/29/Ubuntu-18.04-Server%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C.html</loc>
+    <lastmod>2021-04-07T09:13:42.314Z</lastmod>
+  </url>  <url>
     <loc>https://luanlengli.github.io/2020/11/10/kubernetes%E5%9F%BA%E4%BA%8Evirtual-kubelet%E5%AE%9E%E7%8E%B0%E5%BC%B9%E6%80%A7Pod.html</loc>
-    <lastmod>2020-11-10T09:41:37.058Z</lastmod>
+    <lastmod>2020-11-10T09:41:37.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/08/17/Kubernetes%E9%9B%86%E7%BE%A4%E5%88%A9%E7%94%A8RBAC+ServiceAccount%E7%AE%A1%E7%90%86%E6%9D%83%E9%99%90.html</loc>
     <lastmod>2020-11-06T14:14:12.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/06/19/%E9%83%A8%E7%BD%B2HTTPS-Websocket%E7%9A%84v2ray%E6%9C%8D%E5%8A%A1.html</loc>
-    <lastmod>2020-11-05T03:28:26.707Z</lastmod>
+    <lastmod>2020-11-05T03:28:26.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2020/01/17/%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90%E8%AE%BE%E7%BD%AE.html</loc>
-    <lastmod>2020-09-29T09:20:15.146Z</lastmod>
+    <lastmod>2020-09-29T09:20:15.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/06/12/kubeadm%E9%83%A8%E7%BD%B2kubernetes-1.13.x%E9%9B%86%E7%BE%A4.html</loc>
-    <lastmod>2020-09-28T05:14:33.852Z</lastmod>
+    <lastmod>2020-09-28T05:14:33.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2020/08/30/%E4%BD%BF%E7%94%A8fail2ban%E4%BF%9D%E6%8A%A4jumpserver%E4%B8%8D%E8%A2%AB%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3.html</loc>
-    <lastmod>2020-09-27T03:35:05.929Z</lastmod>
+    <lastmod>2020-09-27T03:35:05.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/12/31/%E9%98%BF%E9%87%8C%E4%BA%91GPU%E8%AE%A1%E7%AE%97%E5%9E%8BECS%E5%AE%9E%E4%BE%8B%E5%AE%89%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8%E5%92%8CCUDA.html</loc>
     <lastmod>2020-09-21T12:46:28.000Z</lastmod>
@@ -26,22 +32,19 @@
     <lastmod>2020-09-12T12:43:28.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2020/07/06/Jumpserver%20v2.0.1%20%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html</loc>
-    <lastmod>2020-08-31T05:25:08.998Z</lastmod>
+    <lastmod>2020-08-31T05:25:08.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2019/11/25/CentOS7%E9%83%A8%E7%BD%B2OpenVPN%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E4%BA%92%E9%80%9A.html</loc>
-    <lastmod>2020-08-31T02:53:21.137Z</lastmod>
+    <lastmod>2020-08-31T02:53:21.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2020/08/24/%E4%BD%BF%E7%94%A8systemd%E6%89%98%E7%AE%A1Podman%E5%AE%B9%E5%99%A8.html</loc>
-    <lastmod>2020-08-24T02:43:46.669Z</lastmod>
+    <lastmod>2020-08-24T02:43:46.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2018/12/05/CentOS-7-6-1810-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C.html</loc>
     <lastmod>2020-08-23T14:36:45.000Z</lastmod>
   </url>  <url>
-    <loc>https://luanlengli.github.io/2019/06/29/Ubuntu-18.04-Server%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C.html</loc>
-    <lastmod>2020-08-23T14:36:27.000Z</lastmod>
-  </url>  <url>
     <loc>https://luanlengli.github.io/2019/02/12/kubectl%E5%91%BD%E4%BB%A4%E7%9A%84%E7%94%A8%E6%B3%95.html</loc>
-    <lastmod>2020-08-21T06:17:39.310Z</lastmod>
+    <lastmod>2020-08-21T06:17:39.000Z</lastmod>
   </url>  <url>
     <loc>https://luanlengli.github.io/2020/08/11/%E5%9F%BA%E4%BA%8EK8S%E7%9A%84GitLab%E8%87%AA%E5%8A%A8%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD.html</loc>
     <lastmod>2020-08-12T00:06:49.000Z</lastmod>
